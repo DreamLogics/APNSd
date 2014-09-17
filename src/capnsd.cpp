@@ -70,7 +70,7 @@ CAPNSd::~CAPNSd()
 
 void CAPNSd::setup()
 {
-    QSettings settings("/etc/CAPNd.cfg",QSettings::IniFormat);
+    QSettings settings("/etc/APNSd.cfg",QSettings::IniFormat);
 
     if (!(settings.contains("local_cert_file") && settings.contains("private_key_passprase") && settings.contains("private_key_file")
             && settings.contains("apns_server") && settings.contains("apns_server_port") && settings.contains("root_cert_file")))
@@ -171,7 +171,7 @@ void CAPNSd::disconnected()
 
 void CAPNSd::connectSocket()
 {
-    QSettings settings("/etc/CAPNd.cfg",QSettings::IniFormat);
+    QSettings settings("/etc/APNSd.cfg",QSettings::IniFormat);
     QString msg = "Connecting to "+settings.value("apns_server").toString()+":"+settings.value("apns_server_port").toString()+"...";
     log(LOG_INFO,msg);
     m_pSocket->connectToHostEncrypted(settings.value("apns_server").toString(),settings.value("apns_server_port").toInt());
@@ -333,7 +333,7 @@ void CAPNSd::readyReadFeedback()
 
 void CAPNSd::checkFeedback()
 {
-    QSettings settings("/etc/CAPNd.cfg",QSettings::IniFormat);
+    QSettings settings("/etc/APNSd.cfg",QSettings::IniFormat);
     QString serv = settings.value("apns_server").toString();
     serv.replace("gateway","feedback");
     QString msg = "Connecting to "+serv+":"+QString::number(settings.value("apns_server_port").toInt()+1)+"...";
