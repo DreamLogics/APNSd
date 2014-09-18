@@ -32,6 +32,8 @@
 #include "capnsd.h"
 #include "shared.h"
 #include <QTimer>
+#include <QString>
+#include <QByteArray>
 
 static int setup_unix_signal_handlers()
 {
