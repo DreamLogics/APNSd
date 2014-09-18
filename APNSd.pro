@@ -15,9 +15,9 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp \
-    capnsd.cpp
+SOURCES += src/main.cpp \
+    src/capnsd.cpp
 
 HEADERS += \
-    capnsd.h \
-    shared.h
+    src/capnsd.h \
+    src/shared.h

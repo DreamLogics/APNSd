@@ -191,8 +191,8 @@ void CAPNSd::checkPayloads()
 
     log(LOG_INFO,msg);
 
-
-    /*QByteArray data;
+#ifdef PUSH_PROTOCOL_V2
+    QByteArray data;
     QDataStream ds(&data,QIODevice::WriteOnly);
     quint32 size = 0;
     ds << (quint8)(2) << (quint32)(0);
@@ -206,7 +206,7 @@ void CAPNSd::checkPayloads()
 
         m_iIdent++;
 
-        ds << i << (quint16)(32 + json.size() + 9);// << device.data() << json.toUtf8().data() << (quint32)(0) << (quint32)(0) << (quint8)(10);
+        ds << i << (quint16)(32 + json.size() + 9);
         ds.writeRawData(device.data(),32);
         ds.writeRawData(json.toUtf8().data(),json.size());
         ds << m_iIdent << (quint32)(0) << (quint8)(10);
@@ -224,8 +224,8 @@ void CAPNSd::checkPayloads()
     test.open(QIODevice::WriteOnly);
     test.write(data);
     test.close();
-    m_pSocket->write(data);*/
-
+    m_pSocket->write(data);
+#else //push protocol v0
     for (quint8 i=0;i<m_pShared->size;i++)
     {
         QByteArray data;
@@ -248,6 +248,7 @@ void CAPNSd::checkPayloads()
     m_pShared->size = 0;
 
     m_pSharedMem->unlock();
+#endif
 }
 
 void CAPNSd::socketError(QAbstractSocket::SocketError err)
