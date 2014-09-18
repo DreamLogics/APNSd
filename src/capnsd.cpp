@@ -21,6 +21,7 @@
 ****************************************************************************/
 #include "capnsd.h"
 #include "shared.h"
+#include <unistd.h>
 #include <iostream>
 #include <QSettings>
 #include <QSslSocket>
