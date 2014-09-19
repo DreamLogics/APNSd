@@ -20,6 +20,11 @@ Run as daemon:
 ./APNSd d
 ```
 
+When running as a daemon check syslog for errors:
+```
+tail /var/log/syslog | grep APNSd
+```
+
 #### Usage ####
 To send a push payload use:
 ```
@@ -28,7 +33,8 @@ To send a push payload use:
 
 #### TODO ####
 -Proper feedback service implementation.   
--Implement push protocol v2.
+-Implement push protocol v2.   
+-Proper certificate validation
 
 #### Note ####
 Tested on Debian Wheezy.
