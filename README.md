@@ -24,6 +24,7 @@ When running as a daemon check syslog for errors:
 ```
 tail /var/log/syslog | grep APNSd
 ```
+To stop the daemon send a sigterm signal.
 
 #### Usage ####
 To send a push payload use:
