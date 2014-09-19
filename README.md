@@ -3,16 +3,13 @@ APNSd
 
 Apple Push Notification Service daemon
 
-### Building ###
-
+#### Building ####
 Simply run qmake followed by make. (Requires Qt 4.8 or later)
 
-### Configure ###
-
+#### Configure ####
 Run APNSd once to generate the settings file. (/etc/APNSd.cfg)
 
-### Running ###
-
+#### Running ####
 Run in foreground:
 ```
 ./APNSd
@@ -23,17 +20,15 @@ Run as daemon:
 ./APNSd d
 ```
 
-### Usage ###
-
+#### Usage ####
 To send a push payload use:
 ```
 ./APNSd push <hexadecimal device token> <base64 encoded json payload>
 ```
 
-### TODO ###
+#### TODO ####
+-Proper feedback service implementation.   
+-Implement push protocol v2.
 
--Proper feedback service implementation.
-
-### Note ###
-
+#### Note ####
 Tested on Debian Wheezy.
