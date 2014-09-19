@@ -46,7 +46,9 @@ CAPNSd::CAPNSd(QSharedMemory *mem,SharedPayload *shared,bool bDaemon,QObject *pa
     m_iIdent = 0;
     m_pTimer = new QTimer();
     m_pTimer->setInterval(500);
+#if QT_VERSION >= 0x050000
     m_pTimer->setTimerType(Qt::CoarseTimer);
+#endif
     connect(m_pTimer,SIGNAL(timeout()),this,SLOT(checkPayloads()));
 
     m_pSocket = new QSslSocket();
@@ -162,7 +164,11 @@ void CAPNSd::disconnected()
     if (m_iFailure++ > 3)
     {
         log(LOG_ALERT,"Could not connect to APN service. Retry in 30 seconds...");
+#if QT_VERSION >= 0x050000
         QTimer::singleShot(30000,Qt::VeryCoarseTimer,this,SLOT(connectSocket()));
+#else
+        QTimer::singleShot(30000,this,SLOT(connectSocket()));
+#endif
         return;
     }
     //reconnect

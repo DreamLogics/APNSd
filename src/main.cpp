@@ -59,7 +59,9 @@ static int setup_unix_signal_handlers()
 
 void usage()
 {
-    std::cout << "APNSd push <device_id> <json string>\n";
+    std::cout << "APNSd v0.1\n";
+    std::cout << "APNSd push <device_id> <json string>; send push payload\n";
+    std::cout << "APNSd d; start as daemon\n";
 }
 
 int main(int argc, char *argv[])
